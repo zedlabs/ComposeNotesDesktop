@@ -10,6 +10,7 @@ import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
 import me.zohaib.ComposeNotesDesktop.model.Database
 import me.zohaib.ComposeNotesDesktop.model.NoteQueries
+import ui.notesList.NotesList
 
 fun main() = Window {
 
@@ -29,10 +30,6 @@ fun main() = Window {
 
 
     MaterialTheme {
-        Button(onClick = {
-            text = "Hello, Desktop!"
-        }) {
-            Text(text)
-        }
+            NotesList()
     }
 }
