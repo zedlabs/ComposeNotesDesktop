@@ -1,0 +1,18 @@
+CREATE TABLE Note (
+  note_number INTEGER NOT NULL,
+  title TEXT NOT NULL,
+  body TEXT NOT NULL
+);
+
+CREATE INDEX note_title ON Note(title);
+
+INSERT INTO Note (note_number, title, body)
+VALUES (15, 'Test Note', 'test Body');
+
+selectAll:
+SELECT *
+FROM Note;
+
+insert:
+INSERT INTO Note(note_number, title, body)
+VALUES (?, ?, ?);
