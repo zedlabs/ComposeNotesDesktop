@@ -57,6 +57,7 @@ fun NotesListItem(note: Note) {
                     }) {
                     Icon(
                         imageVector = Icons.Sharp.Delete,
+                        contentDescription = "delete-button",
                         tint = purpleD1,
                         modifier = Modifier.size(40.dp)
                     )

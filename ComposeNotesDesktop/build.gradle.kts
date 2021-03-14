@@ -3,13 +3,14 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.4.20"
-    id("org.jetbrains.compose") version "0.2.0-build132"
+    kotlin("jvm") version "1.4.31"
+    id("org.jetbrains.compose") version "0.4.0-build173"
     id("com.squareup.sqldelight") version "1.4.4"
 }
 
 group = "me.zohaib"
-version = "1.0"
+version = "1.0.1"
+
 
 sqldelight {
     database("Database") {
@@ -52,6 +53,7 @@ dependencies {
 
 tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "11"
+    @Suppress("SuspiciousCollectionReassignment")
     kotlinOptions.freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn", "-Xinline-classes")
     kotlinOptions.useIR = true
 }

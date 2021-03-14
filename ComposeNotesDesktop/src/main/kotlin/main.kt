@@ -14,17 +14,16 @@ import ui.notesList.NotesList
 
 fun main() = Window {
 
-    val driver: SqlDriver = JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY)
-    Database.Schema.create(driver)
-
-    val database = Database(driver)
-
-    val playerQueries: NoteQueries = database.noteQueries
-
-    println(playerQueries.selectAll().executeAsList())
-
-    playerQueries.insert(note_number = 10, title = "Corey Perry", body = "Hello !")
-    println(playerQueries.selectAll().executeAsList())
+//    val driver: SqlDriver = JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY)
+//    Database.Schema.create(driver)
+//
+//    val database = Database(driver)
+//    val playerQueries: NoteQueries = database.noteQueries
+//
+//    println(playerQueries.selectAll().executeAsList())
+//
+//    playerQueries.insert(note_number = 10, title = "Corey Perry", body = "Hello !")
+//    println(playerQueries.selectAll().executeAsList())
 
     var text by remember { mutableStateOf("Hello, World!") }
 

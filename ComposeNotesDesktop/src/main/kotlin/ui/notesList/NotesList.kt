@@ -5,10 +5,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.ExtendedFloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.sharp.Add
 import androidx.compose.runtime.Composable
@@ -32,8 +30,15 @@ fun NotesList() {
     Database.Schema.create(driver)
 
     val database = Database(driver)
-
     val playerQueries: NoteQueries = database.noteQueries
+    playerQueries.insert(note_number = 0, title = "Corey Perry", body = "Hello !")
+    playerQueries.insert(note_number = 1, title = "Jetpack Compose", body = "This is a declarative UI ramework developed by google and jetbrains")
+    playerQueries.insert(note_number = 2, title = "Perry the platypus" , body = "Hello there perry !")
+    playerQueries.insert(note_number = 3, title = "Tyler Blevins NINJA", body = "Professional fortnite player and streamer on twitch.tv/ninja ")
+    playerQueries.insert(note_number = 0, title = "Corey Perry", body = "Hello !")
+    playerQueries.insert(note_number = 1, title = "Jetpack Compose", body = "This is a declarative UI ramework developed by google and jetbrains")
+    playerQueries.insert(note_number = 2, title = "Perry the platypus" , body = "Hello there perry !")
+    playerQueries.insert(note_number = 3, title = "Tyler Blevins NINJA", body = "Professional fortnite player and streamer on twitch.tv/ninja ")
 
     val noteList = playerQueries.selectAll().executeAsList()
 
@@ -54,7 +59,7 @@ fun NotesList() {
                         )
                     },
                     onClick = {/* editNote(Note(title = "", body = "")) */ },
-                    icon = { Icon(imageVector = Icons.Sharp.Add) },
+                    icon = { Icon(imageVector = Icons.Sharp.Add, contentDescription = "add-button") },
                     backgroundColor = purpleD0
                 )
             }
@@ -69,6 +74,10 @@ fun NotesList() {
                 }
             }
         }
+
+    Surface {
+
+    }
 
 }
 
