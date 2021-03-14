@@ -1,10 +1,13 @@
 package ui.notesList
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -22,6 +25,7 @@ import theme.purpleD0
 import theme.purpleD1
 import theme.robotoCus
 
+@ExperimentalFoundationApi
 @Composable
 fun NotesList() {
 
@@ -64,7 +68,8 @@ fun NotesList() {
                 )
             }
         ) {
-            LazyColumn(
+            LazyVerticalGrid(
+                cells = GridCells.Adaptive(300.dp),
                 modifier = Modifier.fillMaxSize().background(purpleD1)
             ) {
                 itemsIndexed(
@@ -74,10 +79,6 @@ fun NotesList() {
                 }
             }
         }
-
-    Surface {
-
-    }
 
 }
 
