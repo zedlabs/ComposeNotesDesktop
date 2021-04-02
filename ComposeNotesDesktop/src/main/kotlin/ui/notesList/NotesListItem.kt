@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import me.zohaib.ComposeNotesDesktop.model.Note
@@ -16,8 +17,7 @@ import theme.purpleD3
 import theme.robotoCus
 
 @Composable
-fun NotesListItem(note: Note) {
-    //  val vm: MainViewModel = viewModel()
+fun NotesListItem(note: Note, onItemClick: (Note) -> Unit) {
 
 
     Column(
@@ -28,7 +28,7 @@ fun NotesListItem(note: Note) {
             .clip(RoundedCornerShape(10.dp))
             .background(purpleD3)
             .clickable(true) {
-                //  editNote(note)
+                onItemClick(note)
             }
     ) {
         Column(modifier = Modifier.padding(10.dp)) {
@@ -40,7 +40,9 @@ fun NotesListItem(note: Note) {
                     text = note.title,
                     style = robotoCus.body1,
                     fontSize = 20.sp,
-                    color = Color.White
+                    color = Color.White,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
                 )
 
 /** weird bug when the window is resized **/
@@ -58,7 +60,9 @@ fun NotesListItem(note: Note) {
                 text = note.body,
                 style = robotoCus.subtitle1,
                 fontSize = 16.sp,
-                modifier = Modifier.padding(start = 8.dp, bottom = 8.dp)
+                modifier = Modifier.padding(start = 8.dp, bottom = 8.dp),
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis,
             )
         }
 

@@ -46,6 +46,10 @@ dependencies {
     implementation("com.squareup.sqldelight:sqlite-driver:1.4.4")
     implementation("com.squareup.sqldelight:coroutines-extensions-jvm:1.4.4")
 
+    //navigation
+    implementation("com.arkivanov.decompose:decompose:0.1.9")
+    implementation("com.arkivanov.decompose:extensions-compose-jetbrains:0.1.9")
+
 }
 
 

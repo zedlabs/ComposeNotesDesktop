@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
@@ -17,33 +16,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.squareup.sqldelight.db.SqlDriver
-import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
-import me.zohaib.ComposeNotesDesktop.model.Database
+import me.zohaib.ComposeNotesDesktop.model.Note
 import me.zohaib.ComposeNotesDesktop.model.NoteQueries
 import theme.purpleD0
 import theme.purpleD1
 import theme.robotoCus
 
+
 @ExperimentalFoundationApi
 @Composable
-fun NotesList() {
+fun NotesList(onItemClick: (Note) -> Unit) {
 
-
-    val driver: SqlDriver = JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY)
-    Database.Schema.create(driver)
-
-    val database = Database(driver)
-    val playerQueries: NoteQueries = database.noteQueries
-    playerQueries.insert(note_number = 0, title = "Corey Perry", body = "Hello !")
-    playerQueries.insert(note_number = 1, title = "Jetpack Compose", body = "This is a declarative UI ramework developed by google and jetbrains")
-    playerQueries.insert(note_number = 2, title = "Perry the platypus" , body = "Hello there perry !")
-    playerQueries.insert(note_number = 3, title = "Tyler Blevins NINJA", body = "Professional fortnite player and streamer on twitch.tv/ninja ")
-    playerQueries.insert(note_number = 0, title = "Corey Perry", body = "Hello !")
-    playerQueries.insert(note_number = 1, title = "Jetpack Compose", body = "This is a declarative UI ramework developed by google and jetbrains")
-    playerQueries.insert(note_number = 2, title = "Perry the platypus" , body = "Hello there perry !")
-    playerQueries.insert(note_number = 3, title = "Tyler Blevins NINJA", body = "Professional fortnite player and streamer on twitch.tv/ninja ")
-
+    val playerQueries: NoteQueries = DatabaseHelper.queries
     val noteList = playerQueries.selectAll().executeAsList()
 
         Scaffold(
@@ -75,7 +59,7 @@ fun NotesList() {
                 itemsIndexed(
                     items = noteList
                 ) { _, note ->
-                    NotesListItem(note)
+                    NotesListItem(note, onItemClick)
                 }
             }
         }

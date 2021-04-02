@@ -6,12 +6,17 @@ CREATE TABLE Note (
 
 CREATE INDEX note_title ON Note(title);
 
-INSERT INTO Note (note_number, title, body)
-VALUES (15, 'Test Note', 'test Body');
+-- INSERT INTO Note (note_number, title, body)
+-- VALUES (15, 'Test Note', 'test Body');
 
 selectAll:
 SELECT *
 FROM Note;
+
+selectNote:
+SELECT *
+FROM Note
+WHERE note_number = ?;
 
 insert:
 INSERT INTO Note(note_number, title, body)
