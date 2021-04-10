@@ -26,3 +26,8 @@ updateNote:
 UPDATE Note
 SET title = ?, body = ?
 WHERE note_number = ?;
+
+deleteNote:
+DELETE
+FROM Note
+WHERE note_number = ?;
