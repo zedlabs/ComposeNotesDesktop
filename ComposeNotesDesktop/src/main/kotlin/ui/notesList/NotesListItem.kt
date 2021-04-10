@@ -45,7 +45,7 @@ fun NotesListItem(note: Note, onItemClick: (Note) -> Unit) {
                     overflow = TextOverflow.Ellipsis,
                 )
 
-/** weird bug when the window is resized **/
+/** bug when the window is resized **/
 //                    Icon(
 //                        imageVector = Icons.Sharp.Delete,
 //                        contentDescription = "delete-button",

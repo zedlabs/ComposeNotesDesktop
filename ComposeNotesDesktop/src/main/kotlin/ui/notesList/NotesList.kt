@@ -2,25 +2,25 @@ package ui.notesList
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.sharp.Add
+import androidx.compose.material.icons.sharp.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import me.zohaib.ComposeNotesDesktop.model.Note
 import me.zohaib.ComposeNotesDesktop.model.NoteQueries
-import theme.purpleD0
-import theme.purpleD1
-import theme.robotoCus
+import theme.*
+import theme.apricot
 
 
 @ExperimentalFoundationApi
@@ -29,12 +29,30 @@ fun NotesList(onItemClick: (Note) -> Unit) {
 
     val playerQueries: NoteQueries = DatabaseHelper.queries
     val noteList = playerQueries.selectAll().executeAsList()
+    val searchBarState = remember { false }
 
-        Scaffold(
-            topBar = {
-                //NotesListTopBar()
-            },
-            floatingActionButton = {
+    Scaffold(
+        topBar = {
+            //if(searchBarState)
+        },
+        floatingActionButton = {
+            Row {
+                ExtendedFloatingActionButton(
+                    text = {
+                        Text(
+                            text = "Find",
+                            style = robotoCus.subtitle2,
+                            fontSize = 16.sp,
+                            modifier = Modifier
+                                .wrapContentHeight(Alignment.CenterVertically)
+                                .padding(bottom = 2.dp)
+                        )
+                    },
+                    onClick = {},
+                    icon = { Icon(imageVector = Icons.Sharp.Search, contentDescription = "search-button") },
+                    backgroundColor = oldLav
+                )
+                Spacer(modifier = Modifier.width(20.dp))
                 ExtendedFloatingActionButton(
                     text = {
                         Text(
@@ -46,12 +64,14 @@ fun NotesList(onItemClick: (Note) -> Unit) {
                                 .padding(bottom = 2.dp)
                         )
                     },
-                    onClick = {/* editNote(Note(title = "", body = "")) */ },
+                    onClick = {  },
                     icon = { Icon(imageVector = Icons.Sharp.Add, contentDescription = "add-button") },
                     backgroundColor = purpleD0
                 )
             }
-        ) {
+
+        }
+    ) {
             LazyVerticalGrid(
                 cells = GridCells.Adaptive(300.dp),
                 modifier = Modifier.fillMaxSize().background(purpleD1)
@@ -62,7 +82,7 @@ fun NotesList(onItemClick: (Note) -> Unit) {
                     NotesListItem(note, onItemClick)
                 }
             }
-        }
+    }
 
 }
 

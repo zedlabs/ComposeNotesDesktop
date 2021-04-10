@@ -21,3 +21,8 @@ WHERE note_number = ?;
 insert:
 INSERT INTO Note(note_number, title, body)
 VALUES (?, ?, ?);
+
+updateNote:
+UPDATE Note
+SET title = ?, body = ?
+WHERE note_number = ?;

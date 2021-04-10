@@ -7,6 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import me.zohaib.ComposeNotesDesktop.model.NoteQueries
 import ui.NoteDetails.NoteDetails
+import ui.NoteViewModel
 import ui.notesList.NotesList
 
 @ExperimentalFoundationApi
@@ -21,12 +22,13 @@ fun main() = Window {
     playerQueries.insert(note_number = 7, title = "Jetpack Compose", body = "This is a declarative UI ramework developed by google and jetbrains")
     playerQueries.insert(note_number = 8, title = "Perry the platypus" , body = "Hello there perry !")
 
+    //val viewModel = NoteViewModel()
     var screenState by remember { mutableStateOf<Configuration>(Configuration.Screen1) }
 
     MaterialTheme {
             when (val screen = screenState) {
-                is Configuration.Screen1 -> NotesList(onItemClick = { screenState = Configuration.Screen2(id = it.note_number.toInt()) })
-                is Configuration.Screen2 -> NoteDetails(noteId = screen.id , onBack = { screenState = Configuration.Screen1  })
+                is Configuration.Screen1 -> NotesList(onItemClick = { screenState = (Configuration.Screen2(id = it.note_number.toInt())) })
+                is Configuration.Screen2 -> NoteDetails(noteId = screen.id , onBack = { screenState = (Configuration.Screen1) })
             }
         }
     }
