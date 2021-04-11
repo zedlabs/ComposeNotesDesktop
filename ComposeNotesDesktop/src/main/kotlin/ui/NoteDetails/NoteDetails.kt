@@ -50,7 +50,8 @@ fun NoteDetails(noteId: Int, onBack: () -> Unit) {
                 modifier = Modifier
                     .padding(start = 20.dp, top = 15.dp)
                     .clickable {
-                        if (noteId == -1) noteQueries.insert(0, title.value, body.value)
+                        if(noteQueries.selectNote(noteId.toLong()).executeAsOneOrNull() == null)
+                            noteQueries.insert(title.value, body.value)
                         else noteQueries.updateNote(title.value, body.value, noteId.toLong())
                         onBack.invoke()
                     })

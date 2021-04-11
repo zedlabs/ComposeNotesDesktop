@@ -23,7 +23,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import me.zohaib.ComposeNotesDesktop.model.Note
 import me.zohaib.ComposeNotesDesktop.model.NoteQueries
-import theme.*
+import theme.purpleD0
+import theme.purpleD1
+import theme.purpleD3
+import theme.robotoCus
 
 
 @ExperimentalFoundationApi
@@ -76,7 +79,7 @@ fun NotesList(onItemClick: (Note) -> Unit) {
                                 .padding(bottom = 2.dp)
                         )
                     },
-                    onClick = { onItemClick.invoke(Note(-1, "", "")) },
+                    onClick = { onItemClick.invoke(Note(0, "", "")) },
                     icon = { Icon(imageVector = Icons.Sharp.Add, contentDescription = "add-button") },
                     backgroundColor = purpleD0,
                 )

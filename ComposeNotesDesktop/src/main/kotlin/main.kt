@@ -9,11 +9,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import me.zohaib.ComposeNotesDesktop.model.NoteQueries
 import theme.purpleD0
-import theme.purpleD1
 import ui.NoteDetails.NoteDetails
-import ui.NoteViewModel
 import ui.notesList.NotesList
 
 @ExperimentalFoundationApi
@@ -32,7 +29,8 @@ fun main() = Window {
                 })
                 is Configuration.Screen2 -> NoteDetails(
                     noteId = screen.id,
-                    onBack = { screenState = (Configuration.Screen1) })
+                    onBack = { screenState = (Configuration.Screen1) },
+                )
             }
         }
 
