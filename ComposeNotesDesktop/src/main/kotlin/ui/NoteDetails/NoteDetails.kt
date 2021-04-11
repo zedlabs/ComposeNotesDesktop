@@ -31,8 +31,8 @@ fun NoteDetails(noteId: Int, onBack: () -> Unit) {
     val noteQueries = DatabaseHelper.queries
     val note = noteQueries.selectNote(note_number = noteId.toLong()).executeAsOneOrNull()
 
-    val title = remember { mutableStateOf(note?.title) }
-    val body = remember { mutableStateOf(note?.body) }
+    val title = remember { mutableStateOf(note?.title ?: "") }
+    val body = remember { mutableStateOf(note?.body ?: "") }
 
     Column(
         modifier = Modifier.background(purpleD1)
@@ -50,7 +50,8 @@ fun NoteDetails(noteId: Int, onBack: () -> Unit) {
                 modifier = Modifier
                     .padding(start = 20.dp, top = 15.dp)
                     .clickable {
-                        noteQueries.updateNote(title.value.toString(), body.value.toString(), noteId.toLong())
+                        if (noteId == -1) noteQueries.insert(0, title.value, body.value)
+                        else noteQueries.updateNote(title.value, body.value, noteId.toLong())
                         onBack.invoke()
                     })
             Text(
@@ -85,8 +86,9 @@ fun NoteDetails(noteId: Int, onBack: () -> Unit) {
                 color = Color.White,
                 fontSize = 20.sp,
             ),
+            label = {  if(title.value.isEmpty()) Text("Title", color = Color.Gray)},
             maxLines = 1,
-            value = title.value.toString()
+            value = title.value
         )
         TextField(
             modifier = Modifier.fillMaxWidth()
@@ -98,8 +100,11 @@ fun NoteDetails(noteId: Int, onBack: () -> Unit) {
                 color = Color.Gray,
                 fontSize = 16.sp,
             ),
+            label = {
+                if(body.value.isEmpty()) Text("Body", color = Color.Gray)
+            },
             onValueChange = { body.value = it },
-            value = body.value.toString()
+            value = body.value
         )
 
     }
